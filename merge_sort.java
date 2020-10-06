@@ -3,39 +3,53 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-
-        int[] intArray = { 20, 35, -15, 7, 55, 1, -22 };
-        mergeSort(intArray, 0, intArray.length);
-        for (int i = 0; i < intArray.length; i++) {
-            System.out.println(intArray[i]);
+        int[] arr={1,5,2,17,27,33,64,3,9};
+        mergeSort(arr);
+        for(int i=0;i<arr.length; i++){
+            System.out.print(arr[i] + " ");
         }
     }
 
-    public static void mergeSort(int[] input, int start, int end){
-        if(end - start < 2){
+    public static void mergeSort(int[] a){
+        int len=a.length;
+        if(len==1)
             return;
+        int mid= len / 2;
+        int[] a1=new int[mid];
+        int[] b1=new int[len - mid];
+
+        int k=0;
+        for(int i=0; i< a.length; i++){
+            if(i<mid){
+                a1[i]=a[i];
+            }
+            else{
+                b1[k]=a[i];
+                k++;
+            }
         }
-        int mid = (start + end)/2;
-        mergeSort(input, start, mid);
-        mergeSort(input, mid, end);
-        merge(input, start, mid, end);
+
+        mergeSort(a1);
+        mergeSort(b1);
+        merge(a,a1,b1,mid, len - mid);
     }
 
-    public static void merge(int[] input, int start, int mid, int end){
-        if(input[mid -1] <= input[mid])
-            return;
+    public static void merge(int[] ans, int[] a, int[] b, int left, int right){
+        int i=0; int l=0; int r=0;
 
-        int i = start;
-        int j = mid;
-        int tempIndex=0;
-        
-        int[] temp= new int[end - start];
-
-        while(i<mid && j< end){
-            temp[tempIndex++] = input[i] <= input[j] ? input[i++] : input[j++];
+        while(l<left && r<right){
+            if(a[l] < b[r])
+                ans[i++]= a[l++];
+            else
+                ans[i++]=b[r++];
         }
 
-        System.arraycopy(input, i, input, start + tempIndex, mid -i);
-        System.arraycopy(temp, 0, input, start, tempIndex);
+        while(l<left){
+            ans[i++]=a[l++];
+        }
+
+        while(r<right){
+            ans[i++]=b[r++];
+        }
     }
 }
