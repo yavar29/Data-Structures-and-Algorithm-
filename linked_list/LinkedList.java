@@ -1,4 +1,4 @@
-public class LinkedList {
+ public class LinkedList {
     Node head;
 
     public void insert(int data){
