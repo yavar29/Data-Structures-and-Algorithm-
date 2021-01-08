@@ -29,8 +29,12 @@ public class EmployeeDatabaseMain {
 			Employee emp = empIt.next();
 			System.out.println(emp);
 		}
-		
 
+		System.out.println("Sorted by Employee name");
+		ArrayList<Employee> sortedName=db.displayEmployeeDetailsSortedByName(empList);
+		for(Employee emp: sortedName) {
+			System.out.println(emp);
+		}
 		
 		System.out.println("Sorted by years of Experience");
 		ArrayList<Employee> sortedExperience=db.displayEmployeeDetailsSortedByExperience(empList);

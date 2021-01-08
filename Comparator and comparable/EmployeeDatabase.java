@@ -24,5 +24,10 @@ public class EmployeeDatabase {
 		return empList;
 	}
 
+	// To sort by employee name
+	public ArrayList<Employee> displayEmployeeDetailsSortedByName(ArrayList<Employee> empList) {
+		Collections.sort(empList, new CompareByName());
+		return empList;
+	}
 
 }
